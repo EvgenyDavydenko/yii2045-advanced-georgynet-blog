@@ -11,3 +11,4 @@
 7.  Сгенерировал модель common/models/Category для таблицы category
 8.  Сгенерировал модель common/models/Post для таблицы post
 9.  Создал контроллер для засева таблиц category и post фэйковыми данными
+10. Сгенерировал CRUD'ы для моделей common/models/Post и common/models/Category

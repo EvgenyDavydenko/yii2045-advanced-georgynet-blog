@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "category".
@@ -44,13 +46,44 @@ class Category extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[Posts]].
+     /**
+     * Return posts for a category
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveDataProvider
      */
-    public function getPosts()
+    public function getPosts(): ActiveDataProvider
     {
-        return $this->hasMany(Post::class, ['category_id' => 'id']);
+        return new ActiveDataProvider([
+            'query' => Post::find()
+                ->where([
+                    'category_id' => $this->id,
+                    'publish_status' => Post::STATUS_PUBLISH
+                ])
+        ]);
+    }
+
+    /**
+     * Return category list
+     *
+     * @return ActiveDataProvider
+     */
+    public static function findCategories(): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => Category::find(),
+            'pagination' => false
+        ]);
+    }
+
+    /**
+     * @throws NotFoundHttpException
+     */
+    public static function findById(int $id): Category
+    {
+        if (($model = Category::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested post does not exist.');
     }
 }

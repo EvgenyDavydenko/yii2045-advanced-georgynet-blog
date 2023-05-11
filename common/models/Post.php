@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "post".
@@ -21,6 +23,9 @@ use Yii;
  */
 class Post extends \yii\db\ActiveRecord
 {
+    const STATUS_PUBLISH = 'publish';
+    const STATUS_DRAFT = 'draft';
+
     /**
      * {@inheritdoc}
      */
@@ -40,8 +45,6 @@ class Post extends \yii\db\ActiveRecord
             [['category_id', 'author_id'], 'integer'],
             [['publish_date'], 'safe'],
             [['title'], 'string', 'max' => 255],
-            [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['author_id' => 'id']],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -80,5 +83,30 @@ class Post extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'category_id']);
+    }
+
+    public static function findPublished(): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => Post::find()
+                ->where(['publish_status' => self::STATUS_PUBLISH])
+                ->orderBy(['publish_date' => SORT_DESC])
+        ]);
+    }
+
+    public static function findById(int $id, bool $ignorePublishStatus = false): Post
+    {
+        if (($model = Post::findOne(['id' => $id])) !== null) {
+            if ($model->isPublished() || $ignorePublishStatus) {
+                return $model;
+            }
+        }
+
+        throw new NotFoundHttpException('The requested post does not exist.');
+    }
+
+    protected function isPublished(): bool
+    {
+        return $this->publish_status === self::STATUS_PUBLISH;
     }
 }
