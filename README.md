@@ -14,3 +14,4 @@
 10. Сгенерировал CRUD'ы для моделей common/models/Post и common/models/Category
 11. Создал миграцию для добавления в БД таблиц tag: yii migrate/create add_tag_table
 12. Создал миграцию для добавления в БД таблицы comment: yii migrate/create add_comment_table
+13. Добавил методы засева таблиц tag и comment фэйковыми данными
