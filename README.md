@@ -12,3 +12,4 @@
 8.  Сгенерировал модель common/models/Post для таблицы post
 9.  Создал контроллер для засева таблиц category и post фэйковыми данными
 10. Сгенерировал CRUD'ы для моделей common/models/Post и common/models/Category
+11. Создал миграцию для добавления в БД таблиц tag: yii migrate/create add_tag_table
