@@ -6,3 +6,5 @@
 
 3.  Создал миграцию для добавления поля role в таблицу user: `php yii migrate/create add_role_column_to_user_table`
 
+4.  Скоректировал модель common/models/User согласно изменениям в таблице user
+
