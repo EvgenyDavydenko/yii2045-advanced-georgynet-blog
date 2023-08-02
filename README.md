@@ -10,3 +10,5 @@
 
 5.  Создал миграцию для добавления пользователей в таблицу user: `php yii migrate/create add_users_to_user_table`
 
+6.  Создал миграцию для добавления в БД таблиц category и post: `php yii migrate/create create_category_and_post_tables`
+
