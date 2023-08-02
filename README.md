@@ -14,3 +14,5 @@
 
 7.  Сгенерировал модель common\models\Category для таблицы category
 
+8.  Сгенерировал модель common\models\Post для таблицы post
+
