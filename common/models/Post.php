@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "post".
@@ -91,5 +92,21 @@ class Post extends \yii\db\ActiveRecord
                 ->where(['publish_status' => self::STATUS_PUBLISH])
                 ->orderBy(['publish_date' => SORT_DESC])
         ]);
+    }
+
+    public static function findById(int $id, bool $ignorePublishStatus = false): Post
+    {
+        if (($model = Post::findOne(['id' => $id])) !== null) {
+            if ($model->isPublished() || $ignorePublishStatus) {
+                return $model;
+            }
+        }
+
+        throw new NotFoundHttpException('The requested post does not exist.');
+    }
+
+    protected function isPublished(): bool
+    {
+        return $this->publish_status === self::STATUS_PUBLISH;
     }
 }

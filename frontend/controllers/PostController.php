@@ -21,4 +21,11 @@ class PostController extends Controller
             'categories' => Category::findCategories()
         ]);
     }
+
+    public function actionView(int $id): string
+    {
+        return $this->render('view', [
+            'model' => Post::findById($id),
+        ]);
+    }
 }
