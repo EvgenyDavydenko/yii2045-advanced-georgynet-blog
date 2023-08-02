@@ -6,9 +6,11 @@
 
 3.  Создал миграцию для добавления поля role в таблицу user: `php yii migrate/create add_role_column_to_user_table`
 
-4.  Скоректировал модель common/models/User согласно изменениям в таблице user
+4.  Скоректировал модель common\models\User согласно изменениям в таблице user
 
 5.  Создал миграцию для добавления пользователей в таблицу user: `php yii migrate/create add_users_to_user_table`
 
 6.  Создал миграцию для добавления в БД таблиц category и post: `php yii migrate/create create_category_and_post_tables`
+
+7.  Сгенерировал модель common\models\Category для таблицы category
 
