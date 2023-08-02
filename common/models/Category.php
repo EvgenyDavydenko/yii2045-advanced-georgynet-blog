@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\data\ActiveDataProvider;
 
 /**
  * This is the model class for table "category".
@@ -52,5 +53,18 @@ class Category extends \yii\db\ActiveRecord
     public function getPosts()
     {
         return $this->hasMany(Post::class, ['category_id' => 'id']);
+    }
+
+        /**
+     * Return category list
+     *
+     * @return ActiveDataProvider
+     */
+    public static function findCategories(): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => Category::find(),
+            'pagination' => false
+        ]);
     }
 }
