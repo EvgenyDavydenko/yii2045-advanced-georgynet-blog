@@ -8,3 +8,5 @@
 
 4.  Скоректировал модель common/models/User согласно изменениям в таблице user
 
+5.  Создал миграцию для добавления пользователей в таблицу user: `php yii migrate/create add_users_to_user_table`
+
