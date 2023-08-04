@@ -26,3 +26,5 @@
 
 13. Создал миграцию для добавления в БД таблиц tag: `php yii migrate/create add_tag_table`
 
+14. Сгенерировал модели common\models\Tag и common\models\TagPost для таблиц tags и tag_post
+
