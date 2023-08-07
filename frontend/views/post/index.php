@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\LinkPager;
+use yii\bootstrap4\LinkPager;
 
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $posts */
@@ -22,6 +22,11 @@ $this->title = 'Все статьи';
             ]);
         endforeach
         ?>
+        <div class="mt-3">
+            <?= LinkPager::widget([
+                'pagination' => $posts->getPagination()
+            ]) ?>
+        </div>  
     </div>
 
     <div class="col-sm-3 offset-sm-1 blog-sidebar">
@@ -36,17 +41,4 @@ $this->title = 'Все статьи';
             ?>
         </ul>
     </div>
-</div>
-
-<div class="row mt-3">
-<div class="col-sm-8">
-    <?= LinkPager::widget([
-        'pagination' => $posts->getPagination(),
-        'maxButtonCount' => 5,
-        'activePageCssClass' => 'active',
-        'linkContainerOptions' => ['class' => 'page-item'],
-        'linkOptions' => ['class' => 'page-link'],
-        'disabledListItemSubTagOptions' => ['tag' => 'a', 'class' => 'page-link'],
-    ]) ?>
-</div>    
 </div>

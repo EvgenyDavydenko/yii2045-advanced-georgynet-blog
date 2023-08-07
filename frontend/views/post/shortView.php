@@ -1,8 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+use common\models\TagPost;
 
 /** @var common\models\Post $model */
+/** @var TagPost $postTag */
 ?>
 <div class="card mt-3">
     <div class="card-header">
@@ -20,5 +22,16 @@ use yii\helpers\Html;
             <?= '| Publish date: ' . $model->publish_date ?>
             <?= '| Category: ' . Html::a($model->category->title, ['category/index', 'id' => $model->category->id]) ?>
         </p>
+    </div>
+    <div class="tags">
+        <?php
+        $tags = [];
+        foreach($model->getTagPost()->all() as $postTag):
+            $tag = $postTag->getTag()->one();
+            $tags[] = Html::a($tag->title, ['tag/view', 'id' => $tag->id]);
+        endforeach
+        ?>
+
+        <?= 'Tags: ' . implode(', ', $tags) ?>
     </div>
 </div>

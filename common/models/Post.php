@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\db\ActiveQuery;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -83,6 +84,16 @@ class Post extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'category_id']);
+    }
+
+    /**
+     * Return tags for post
+     *
+     * @return ActiveQuery
+     */
+    public function getTagPost(): ActiveQuery
+    {
+        return $this->hasMany(TagPost::class, ['post_id' => 'id']);
     }
 
     public static function findPublished(): ActiveDataProvider
