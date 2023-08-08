@@ -36,3 +36,5 @@
 
 18. Создал миграцию для создания в БД таблицы comment: `php yii migrate/create create_comment_table`
 
+19. Сгенерировал модель common\models\Comment для таблицы comment
+
