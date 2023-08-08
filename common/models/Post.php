@@ -86,6 +86,19 @@ class Post extends \yii\db\ActiveRecord
         return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
+    public function getComments(): ActiveQuery
+    {
+        return $this->hasMany(Comment::class, ['post_id' => 'id']);
+    }
+
+    public function getPublishedComments(): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => $this->getComments()
+                ->where(['publish_status' => Comment::STATUS_PUBLISH])
+        ]);
+    }
+
     /**
      * Return tags for post
      *

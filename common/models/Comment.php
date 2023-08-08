@@ -20,6 +20,9 @@ use Yii;
  */
 class Comment extends \yii\db\ActiveRecord
 {
+    public const STATUS_MODERATE = 'moderate';
+    public const STATUS_PUBLISH = 'publish';
+    
     /**
      * {@inheritdoc}
      */

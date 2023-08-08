@@ -41,4 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= 'Tags: ' . implode(', ', $tags) ?>
     </div>
 
+    <div class="comments">
+    <?php /** @var Comment $comment */ ?>
+    <?php foreach($model->getPublishedComments()->models as $comment) : ?>
+        <div class="comment">
+            <div class="meta"><?= 'Author: ' ?> <strong><?=isset($comment->author) ? $comment->author->username : null?></strong></div>
+            <div><?= htmlspecialchars($comment->content) ?></div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
 </div>
