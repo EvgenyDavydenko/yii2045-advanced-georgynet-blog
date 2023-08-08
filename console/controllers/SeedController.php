@@ -8,6 +8,7 @@ use common\models\Category;
 use common\models\Post;
 use common\models\Tag;
 use common\models\TagPost;
+use common\models\Comment;
 use Faker\Factory;
 
 class SeedController extends Controller
@@ -16,6 +17,7 @@ class SeedController extends Controller
     const POS_IN_CAT = 4;
     const TAG_QTY = 10;
     const TAG_IN_POS = 3;
+    const COM_IN_POS = 4;
 
     public function actionCategory()
     {
@@ -85,6 +87,26 @@ class SeedController extends Controller
           $tp->tag_id = $faker->numberBetween(1, self::TAG_QTY);
           $tp->post_id = $faker->numberBetween(1, self::CAT_QTY * self::POS_IN_CAT);
           $tp->save(false);
+        }
+
+        echo "Data generation is complete!\n";
+
+        return ExitCode::OK;
+    }
+
+    public function actionComment()
+    {
+        $faker = Factory::create();
+
+        for($i = 0; $i < self::CAT_QTY * self::POS_IN_CAT * self::COM_IN_POS; $i++)
+        {
+          $comment = new Comment();
+          $comment->title = $faker->word();
+          $comment->content = $faker->text(rand(50, 100));
+          $comment->publish_status = 'publish';
+          $comment->post_id = $faker->numberBetween(1, self::CAT_QTY * self::POS_IN_CAT);
+          $comment->author_id = $faker->numberBetween(2, 4);
+          $comment->save(false);
         }
 
         echo "Data generation is complete!\n";
