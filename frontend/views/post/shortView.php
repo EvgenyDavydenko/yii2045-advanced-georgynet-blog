@@ -28,7 +28,7 @@ use common\models\TagPost;
         $tags = [];
         foreach($model->getTagPost()->all() as $postTag):
             $tag = $postTag->getTag()->one();
-            $tags[] = Html::a($tag->title, ['tag/view', 'id' => $tag->id]);
+            $tags[] = Html::a($tag->title, ['tag/index', 'id' => $tag->id]);
         endforeach
         ?>
 

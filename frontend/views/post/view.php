@@ -30,4 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <div class="tags">
+        <?php
+        $tags = [];
+        foreach($model->getTagPost()->all() as $postTag) {
+            $tag = $postTag->getTag()->one();
+            $tags[] = Html::a($tag->title, ['tag/view', 'id' => $tag->id]);
+        } ?>
+
+        <?= 'Tags: ' . implode(', ', $tags) ?>
+    </div>
+
 </div>
