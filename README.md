@@ -10,7 +10,7 @@
 
 5.  Создал миграцию для добавления пользователей в таблицу user: `php yii migrate/create add_users_to_user_table`
 
-6.  Создал миграцию для добавления в БД таблиц category и post: `php yii migrate/create create_category_and_post_tables`
+6.  Создал миграцию для создания в БД таблиц category и post: `php yii migrate/create create_category_and_post_tables`
 
 7.  Сгенерировал модель common\models\Category для таблицы category
 
@@ -24,7 +24,7 @@
 
 12. Создал MVC для отображения списка постов конкретной категорий
 
-13. Создал миграцию для добавления в БД таблиц tag: `php yii migrate/create add_tag_table`
+13. Создал миграцию для создания в БД таблиц tag: `php yii migrate/create create_tag_table`
 
 14. Сгенерировал модели common\models\Tag и common\models\TagPost для таблиц tag и tag_post
 
@@ -33,4 +33,6 @@
 16. Вывел список тегов на карточке поста списка постов и просмотра одного поста
 
 17. Создал MVC для отображения списка постов по тегу
+
+18. Создал миграцию для создания в БД таблицы comment: `php yii migrate/create create_comment_table`
 
