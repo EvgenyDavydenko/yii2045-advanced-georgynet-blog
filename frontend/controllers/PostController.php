@@ -2,9 +2,11 @@
 
 namespace frontend\controllers;
 
+use frontend\models\CommentForm;
 use common\models\Post;
 use common\models\Category;
 use yii\web\Controller;
+use yii\helpers\Url;
 
 class PostController extends Controller
 {
@@ -26,6 +28,7 @@ class PostController extends Controller
     {
         return $this->render('view', [
             'model' => Post::findById($id),
+            'commentForm' => new CommentForm(Url::to(['comment/add', 'id' => $id])),
         ]);
     }
 }
